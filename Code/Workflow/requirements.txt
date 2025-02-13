@@ -1,0 +1,6 @@
+langgraph==0.2.70
+langsmith==0.3.7
+langchain_anthropic==0.3.7
+tavily==0.5.1
+langchain_community==0.3.17
+matplotlib==3.10.0
