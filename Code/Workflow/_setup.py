@@ -48,32 +48,24 @@ project_root = script_dir.parent.parent.parent
 
 load_dotenv(project_root / ".env")
 
-### Import necessary libraries for creation of Anthropic agent
-##############################################################
+# imports for the graphs
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_openai import ChatOpenAI
+
+from typing import Annotated
+import operator
+
+import numpy as np
+import pandas as pd
 
 from typing import Annotated
 from typing_extensions import TypedDict
 
-from langgraph.graph import StateGraph, START, END
-from langgraph.graph.message import add_messages
+from polygon import RESTClient
 
-from langchain_anthropic import ChatAnthropic
+from IPython.display import Image, display
 
-### Web search using Tavily
-##############################################################
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langgraph.checkpoint.memory import MemorySaver
-from langgraph.prebuilt import ToolNode, tools_condition
-
-
-from langchain.tools import Tool
-
-from langchain.agents import initialize_agent
-from langchain.agents import AgentType
-
-
-
-### For graphing capabilities
-##############################################################
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
+
+import json
